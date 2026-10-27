@@ -1,0 +1,86 @@
+name: Build project
+
+on:
+  workflow_dispatch:
+
+jobs:
+  buildForAllSupportedPlatforms:
+    name: Build for iOS
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-iOS-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-iOS-
+
+      - name: Free disk space
+        uses: jlumbroso/free-disk-space@v1.3.1
+        with:
+          docker-images: true
+          tool-cache: true
+          large-packages: true
+
+      - uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: iOS
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Build-iOS
+          path: build/iOS
+
+  make-ipa:
+    name: Package unsigned IPA
+    needs: buildForAllSupportedPlatforms
+    runs-on: macos-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: Build-iOS
+          path: build/iOS
+
+      - name: Build and package IPA
+        shell: bash
+        run: |
+          PROJECT=$(find build/iOS -name Unity-iPhone.xcodeproj -print -quit)
+          if [ -z "$PROJECT" ]; then
+            echo "Unity-iPhone.xcodeproj not found"
+            exit 1
+          fi
+
+          xcodebuild \
+            -project "$PROJECT" \
+            -scheme Unity-iPhone \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath build/DerivedData \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+          APP=$(find build/DerivedData/Build/Products/Release-iphoneos \
+            -maxdepth 1 -name '*.app' -print -quit)
+          if [ -z "$APP" ]; then
+            echo "Built .app not found"
+            exit 1
+          fi
+
+          mkdir -p build/Payload
+          cp -R "$APP" build/Payload/
+          cd build
+          zip -qr unsigned.ipa Payload
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: unsigned-ipa
+          path: build/unsigned.ipa
