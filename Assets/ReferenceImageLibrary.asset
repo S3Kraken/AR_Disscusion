@@ -26,4 +26,4 @@ MonoBehaviour:
     m_Size: {x: 0.1, y: 0.056250002}
     m_SpecifySize: 1
     m_Name: T-Cell
-    m_Texture: {fileID: 0}
+    m_Texture: {fileID: 2800000, guid: 0773d1742b3140c4dbef6a3440f3cce5, type: 3}
