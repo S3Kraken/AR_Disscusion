@@ -41,7 +41,7 @@ jobs:
           path: build/iOS
 
   make-ipa:
-    name: Package unsigned IPA
+    name: Package AR IPA
     needs: buildForAllSupportedPlatforms
     runs-on: macos-latest
     steps:
@@ -78,9 +78,9 @@ jobs:
           mkdir -p build/Payload
           cp -R "$APP" build/Payload/
           cd build
-          zip -qr unsigned.ipa Payload
+          zip -qr AR.ipa Payload
 
       - uses: actions/upload-artifact@v4
         with:
-          name: unsigned-ipa
-          path: build/unsigned.ipa
+          name: AR-ipa
+          path: build/AR.ipa
