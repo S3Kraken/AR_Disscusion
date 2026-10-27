@@ -607,7 +607,7 @@ MonoBehaviour:
   m_Camera: {fileID: 461737855}
   m_OriginBaseGameObject: {fileID: 1094804984}
   m_CameraFloorOffsetObject: {fileID: 2094852854}
-  m_RequestedTrackingOriginMode: 1
+  m_RequestedTrackingOriginMode: 0
   m_CameraYOffset: 1.1176
 --- !u!4 &1094804986
 Transform:
@@ -641,7 +641,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_SerializedLibrary: {fileID: 11400000, guid: e26972da68a5e584dae135d692801342, type: 2}
-  m_MaxNumberOfMovingImages: 1
+  m_MaxNumberOfMovingImages: 0
   m_TrackedImagePrefab: {fileID: 1411627646749388370, guid: ebdb1c8e8d8959a468528d11032b82f3, type: 3}
 --- !u!1 &1212510512
 GameObject:
