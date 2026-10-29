@@ -22,43 +22,16 @@ public class ARManager : MonoBehaviour
 
     private void HandleRot()
     {
-        //if (Input.touchCount == 1) // If one finger touches screen.
-        //{
-        //    Touch touch = Input.GetTouch(0);
+        if (Input.touchCount == 0)
+            return;
 
-        //    if (touch.phase == TouchPhase.Began)
-        //    {
-        //        dragStartPos = touch.position;
-        //    }
-        //    else if (touch.phase == TouchPhase.Ended)
-        //    {
-        //        dragEndPos = touch.position;
+        Touch touch = Input.GetTouch(0);
 
-
-        //        Vector2 delta = dragEndPos - dragStartPos;
-
-        //        if (delta.magnitude < 0.1f)
-        //        {
-        //            return SwipeDirection.None;
-        //        }
-
-        //        if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
-        //        {
-        //            if (delta.x > 0)
-        //                return SwipeDirection.Right;
-        //            else
-        //                return SwipeDirection.Left;
-        //        }
-        //        else
-        //        {
-        //            if (delta.y > 0)
-        //                return SwipeDirection.Up;
-        //            else
-        //                return SwipeDirection.Down;
-        //        }
-        //    }
-        //}
-        //return SwipeDirection.None;
+        if (touch.phase == TouchPhase.Moved)
+        {
+            float rotationAmount = touch.deltaPosition.x * 5f;
+            transform.Rotate(Vector3.up, rotationAmount, Space.Self);
+        }
     }
 
     public void ToggleAnimation()
