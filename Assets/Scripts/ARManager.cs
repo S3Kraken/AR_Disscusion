@@ -1,8 +1,16 @@
+using System.Collections.Generic;
 using System.IO.Pipes;
+using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 
 public class ARManager : MonoBehaviour
 {
+    GameObject placedObject;
+    Vector2 touchPos;
+    ARRaycastManager rayMang;
+    List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
     bool arMode = true;
     [SerializeField] GameObject arSession;
@@ -17,7 +25,28 @@ public class ARManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (arMode)
+        {
+            if (Input.touchCount > 0)
+            {
+                Touch touch = Input.GetTouch(0);
 
+                if (touch.phase == TouchPhase.Began)
+                    touchPos = touch.position;
+
+                if (rayMang.Raycast(touchPos, hits, TrackableType.PlaneWithinPolygon))
+                {
+                    Pose hitPose = hits[0].pose;
+
+                    if (placedObject == null)
+                        placedObject = Instantiate(cloud, hitPose.position, Quaternion.identity);
+                    else
+                    {
+                        placedObject.transform.position = hitPose.position;
+                    }
+                }
+            }
+        }
     }
 
     public void ToggleARMode()
