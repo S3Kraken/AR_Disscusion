@@ -9,8 +9,8 @@ public class ARManager : MonoBehaviour
 {
     GameObject placedObject;
     Vector2 touchPos;
-    [SerializeField]ARPlaneManager arPlaneMang;
-    [SerializeField]ARRaycastManager rayMang;
+    [SerializeField] ARPlaneManager arPlaneMang;
+    [SerializeField] ARRaycastManager rayMang;
     List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
     bool arMode = true;
@@ -32,7 +32,7 @@ public class ARManager : MonoBehaviour
             {
                 Touch touch = Input.GetTouch(0);
 
-                if (touch.phase == TouchPhase.Ended)
+                if (touch.phase == TouchPhase.Began)
                     touchPos = touch.position;
 
                 if (rayMang.Raycast(touchPos, hits, TrackableType.PlaneWithinPolygon))
@@ -40,13 +40,15 @@ public class ARManager : MonoBehaviour
                     Pose hitPose = hits[0].pose;
 
                     if (placedObject == null)
+                    {
                         placedObject = Instantiate(cloud, hitPose.position, Quaternion.identity);
+                        arPlaneMang.planePrefab = null;
+                    }
                     else
                     {
                         placedObject.transform.position = hitPose.position;
                     }
 
-                    arPlaneMang.planePrefab = null;
                 }
             }
         }
