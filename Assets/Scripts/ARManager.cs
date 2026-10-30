@@ -42,7 +42,6 @@ public class ARManager : MonoBehaviour
                     if (placedObject == null)
                     {
                         placedObject = Instantiate(cloud, hitPose.position, Quaternion.identity);
-                        arPlaneMang.planePrefab = null;
                     }
                     else
                     {

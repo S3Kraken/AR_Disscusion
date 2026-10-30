@@ -867,7 +867,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0
+  m_fontSize: 68.7
   m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1214,9 +1214,9 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 800, y: 1470}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1298,7 +1298,7 @@ MonoBehaviour:
   rayMang: {fileID: 1094804989}
   arSession: {fileID: 2102709423}
   normalModeCollection: {fileID: 178958674}
-  cloud: {fileID: 1411627646749388370, guid: ebdb1c8e8d8959a468528d11032b82f3, type: 3}
+  cloud: {fileID: 8749697202442032178, guid: 7b66d825d84bafd40b3e2a78843060d3, type: 3}
 --- !u!4 &1621373509
 Transform:
   m_ObjectHideFlags: 0
@@ -1531,7 +1531,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0
+  m_fontSize: 123
   m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2039,7 +2039,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1912186234861293173, guid: 7b66d825d84bafd40b3e2a78843060d3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 7b66d825d84bafd40b3e2a78843060d3, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
