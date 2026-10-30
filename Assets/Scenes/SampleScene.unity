@@ -867,7 +867,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 78.15
+  m_fontSize: 0
   m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1294,6 +1294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ada6d38fe060e114ab773554f33baaec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  arPlaneMang: {fileID: 1094804988}
+  rayMang: {fileID: 1094804989}
   arSession: {fileID: 2102709423}
   normalModeCollection: {fileID: 178958674}
   cloud: {fileID: 1411627646749388370, guid: ebdb1c8e8d8959a468528d11032b82f3, type: 3}
@@ -1529,7 +1531,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 97
+  m_fontSize: 0
   m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 1
